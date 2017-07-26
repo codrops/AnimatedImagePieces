@@ -8,7 +8,7 @@ A set of experiments with an animated image pieces effect where an image gets sh
 
 [Demo](https://tympanus.net/Development/AnimatedImagePieces/)
 
-This demo is kindly sponsored by [NomNom](http://go.hackingui.com/NomNomcodrops250717), data-driven design made easy.
+This demo is kindly sponsored by [NomNom](http://go.hackingui.com/NomNomcodrops2507117), data-driven design made easy.
 
 ## Credits
 

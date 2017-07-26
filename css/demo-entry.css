@@ -67,7 +67,9 @@
 	width: calc(var(--pieces-height) * calc(888/1000));
 	position: absolute;
 	left: 50%;
+	top: 50%;
 	margin-left: calc(-1 * var(--pieces-height) * calc(888/1000) / 2);
+	margin-top: calc(-1 * var(--pieces-height) / 2);
 	pointer-events: none;
 }
 
