@@ -1,8 +1,8 @@
 # Animated Image Pieces
 
-An animated pieces effect for images.
+A set of experiments with an animated image pieces effect where an image gets shattered into rectangular fragments. Powered by [anime.js](http://anime-js.com/).
 
-![Image Title](link)
+![Animated Image Pieces](https://tympanus.net/codrops/wp-content/uploads/2017/07/AnimatedImagePieces_Featured.jpg)
 
 [Article on Codrops](https://tympanus.net/codrops/?p=31849)
 
@@ -12,6 +12,7 @@ This demo is kindly sponsored by [NomNom](http://go.hackingui.com/NomNomcodrops2
 
 ## Credits
 
+- [Anime.js](http://anime-js.com/) by Julian Garnier
 - Photography from [Unsplash.com](https://unsplash.com/) and [Visual Hunt](https://visualhunt.com/p/aatik-tasneem/)
 - [imagesLoaded](https://imagesloaded.desandro.com/) by Dave DeSandro
 
