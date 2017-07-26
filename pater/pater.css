@@ -1,0 +1,99 @@
+.pater {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding: 1em 0;
+	color: inherit;
+	background: #000;
+	display: grid;
+	text-align: left;
+	grid-template-columns: auto;
+	grid-template-rows: 20px auto;
+	z-index: 1000;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif !important;
+}
+
+.pater:hover {
+	color: inherit;
+}
+
+.pater::before {
+	color: var(--body-text-alt);
+	content: 'Our Sponsor';
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0 0 5px 10px;
+	font-size: 0.75em;
+	grid-area: 1 / 1 / 2 / 3;
+}
+
+.pater__img {
+	display: none;
+	width: 12vw;
+	height: 12vw;
+	min-width: 160px;
+	min-height: 156px;
+	grid-area: 2 / 1 / 3 / 2;
+}
+
+.pater__title {
+	margin: 0;
+	padding: 0 10px;
+	font-size: 1em;
+	font-weight: normal;
+	align-self: end;
+}
+
+.pater__title,
+.pater__description {
+	align-self: end;
+	grid-area: 2 / 1 / 3 / 3;
+}
+
+.pater__description {
+	margin: 0;
+	padding: 10px 0 0 10px;
+	opacity: 0;
+	font-size: 0.85em;
+	display: none;
+}
+
+.pater__description strong {
+	display: block;
+	padding-top: 5px;
+	color: var(--highlight-text);
+}
+
+@media screen and (min-width: 60em) {
+	.pater {
+		width: 320px;
+		padding: 2em 0;
+		margin: 0 2em;
+		color: inherit;
+		background: transparent;
+		grid-template-columns: auto auto;
+	}
+	.pater__img {
+		display: flex;
+	}
+	.pater::before {
+		display: block;
+		padding: 0 0 10px 0;
+	}
+	.pater:hover .pater__title {
+		opacity: 0;
+		grid-area: 2 / 2 / 3 / 3;
+	}
+	.pater:hover .pater__description {
+		opacity: 1;
+	}
+	.pater__description {
+		display: block;
+	}
+	.pater__title,
+	.pater__description {
+		grid-area: 2 / 2 / 3 / 3;
+		transition: opacity 0.5s;
+	}
+}

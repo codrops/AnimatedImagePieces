@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Animated Image Pieces | Demo: Switch | Codrops</title>
+		<meta name="description" content="An animated pieces effect for images with many possibilities" />
+		<meta name="keywords" content="animation, piece, fragment, box, css, javascript, demo, effect, web dev" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo-switch.css" />
+		<link rel="stylesheet" type="text/css" href="pater/pater.css" />
+		<script>document.documentElement.className = 'js';</script>
+	</head>
+	<body class="demo-switch loading">
+		<svg class="hidden">
+			<symbol id="icon-arrow" viewBox="0 0 24 24">
+				<title>arrow</title>
+				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
+			</symbol>
+			<symbol id="icon-drop" viewBox="0 0 24 24">
+				<title>drop</title>
+				<path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z"/><path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z"/>
+			</symbol>
+		</svg>
+		<main>
+			<div class="message">Please view this demo on a desktop.</div>
+			<div class="frame">
+				<header class="codrops-header">
+					<div class="codrops-links">
+						<a class="codrops-icon codrops-icon--prev" href="https://tympanus.net/Development/GridLayoutSlideshow/" title="Previous Demo"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
+						<a class="codrops-icon codrops-icon--drop" href="https://tympanus.net/codrops/?p=31849" title="Back to the article"><svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg></a>
+					</div>
+					<h1 class="codrops-header__title">Image Pieces Effect</h1>
+				</header>
+				<nav class="demos">
+					<a class="demo demo--current" href="index.html">Demo 1</a>
+					<a class="demo" href="gallery.html">Demo 2</a>
+					<a class="demo" href="entry.html">Demo 3</a>
+					<a class="demo" href="grid.html">Demo 4</a>
+				</nav>
+				<a class="pater" href="http://go.hackingui.com/NomNomcodrops250717" onClick="recordOutboundLink(this, 'Outbound Links', 'NomNomcodrops250717');return false;">
+					<div class="pater__img pieces" style="background-image: url(pater/NomNom.png)" data-image-alt="pater/NomNom2.png"></div>
+					<h3 class="pater__title">Data-driven designers use <strong>NomNom</strong> to learn from customers faster</h3>
+					<p class="pater__description">The easiest way to search, organize and share all your customer feedback and user research in one place. <strong>NomNom is data-driven design made easy. &rarr;</strong></p>
+				</a>
+			</div>
+			<div class="content">
+				<header class="content__header">
+					<h2 class="content__title">self made</h2>
+				</header>
+				<div class="slideshow">
+					<div id="slide-1" class="slide" style="background-image: url(img/2d.jpg)"></div>
+					<div id="slide-2" class="slide" style="background-image: url(img/3d.jpg)"></div>
+					<div id="slide-3" class="slide" style="background-image: url(img/4d.jpg)"></div>
+					<div id="slide-4" class="slide" style="background-image: url(img/1d.jpg)"></div>
+					<div class="pieces" style="background-image: url(img/2d.jpg)"></div>
+				</div>
+				<nav class="menu">
+					<a class="menu__item menu__item--current" href="#slide-1" data-image="img/2d.jpg">Jason Salvatore <span>Director</a>
+					<a class="menu__item" href="#slide-2" data-image="img/3d.jpg">Andreas Greenberg <span>Cinematography</span></a>
+					<a class="menu__item" href="#slide-3" data-image="img/4d.jpg">Terry Mitchell <span>Costume Design</span></a>
+					<a class="menu__item" href="#slide-4" data-image="img/1d.jpg">Michael Brighton <span>Writer</span></a>
+				</nav>
+			</div>
+		</main>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/anime.min.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+		{
+			imagesLoaded(document.body, { background: true }, () => document.body.classList.remove('loading'));
+			
+			const menuItems = Array.from(document.querySelectorAll('.menu > .menu__item'));
+			
+			const piecesObj = new Pieces(document.querySelector('.slideshow > .pieces'), {
+				pieces: {rows: 14, columns: 12},
+				delay: [0,40],
+				hasTilt: true,
+				tilt: {
+					maxRotationX: -1, 
+					maxRotationY: -1, 
+					maxTranslationX: -5, 
+					maxTranslationY: -2
+				}
+			});
+			
+			let isAnimating = false;
+			let current = 0;
+
+			const openImage = (ev, item, pos) => {
+				ev.preventDefault();
+				if ( isAnimating || current === pos ) {
+					return false;
+				}
+				isAnimating = true;
+				menuItems[current].classList.remove('menu__item--current');
+				current = pos;
+				menuItems[current].classList.add('menu__item--current');
+				const imgsrc = item.dataset.image;
+
+				piecesObj.animate({
+					duration: 200,
+					easing: 'easeOutQuad',
+					delay: (t,i,l) => {
+						return parseInt(t.dataset.row) * parseInt(t.dataset.delay);
+					},
+					translateX: (t,i) => {
+						return anime.random(-50,50)+'px';
+					},
+					translateY: (t,i) => { 
+						return anime.random(-800,-200)+'px';
+					},
+					rotateZ: (t,i) => { 
+						return anime.random(-45,45)+'deg';
+					},
+					opacity: 0,
+					complete: () => {
+						piecesObj.setImage(imgsrc);
+
+						piecesObj.animate({
+							duration: 500,
+							easing: [0.3,1,0.3,1],
+							delay: (t,i,l) => {
+								return parseInt(t.dataset.row) * parseInt(t.dataset.delay);
+							},
+							translateX: 0,
+							translateY: () => {
+								return [anime.random(200,800)+'px','0px'];
+							},
+							rotateZ: 0,
+							opacity: {
+								value: 1,
+								duration: 500,
+								easing: 'linear'
+							},
+							complete: () => {
+								isAnimating = false;
+							}
+						});
+					}
+				});
+			};
+
+			menuItems.forEach((item,pos) => item.addEventListener('click', (ev) => openImage(ev,item,pos)));
+		}
+		</script>
+		<script src="pater/pater.js"></script>
+	</body>
+</html>

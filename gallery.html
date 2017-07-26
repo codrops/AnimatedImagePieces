@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Animated Image Pieces | Demo: Gallery | Codrops</title>
+		<meta name="description" content="An animated pieces effect for images with many possibilities" />
+		<meta name="keywords" content="animation, piece, fragment, box, css, javascript, demo, effect, web dev" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="https://fonts.googleapis.com/css?family=Archivo+Black" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo-gallery.css" />
+		<link rel="stylesheet" type="text/css" href="pater/pater.css" />
+		<script>document.documentElement.className = 'js';</script>
+	</head>
+	<body class="demo-gallery loading">
+		<svg class="hidden">
+			<symbol id="icon-arrow" viewBox="0 0 24 24">
+				<title>arrow</title>
+				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
+			</symbol>
+			<symbol id="icon-drop" viewBox="0 0 24 24">
+				<title>drop</title>
+				<path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z"/><path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z"/>
+			</symbol>
+		</svg>
+		<main>
+			<div class="message">Please view this demo on a desktop.</div>
+			<div class="frame">
+				<header class="codrops-header">
+					<div class="codrops-links">
+						<a class="codrops-icon codrops-icon--prev" href="" title="Previous Demo"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
+						<a class="codrops-icon codrops-icon--drop" href="" title="Back to the article"><svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg></a>
+					</div>
+					<h1 class="codrops-header__title">Image Pieces Effect</h1>
+				</header>
+				<nav class="demos">
+					<a class="demo" href="index.html">Demo 1</a>
+					<a class="demo demo--current" href="gallery.html">Demo 2</a>
+					<a class="demo" href="entry.html">Demo 3</a>
+					<a class="demo" href="grid.html">Demo 4</a>
+				</nav>
+				<a class="pater" href="http://go.hackingui.com/NomNomcodrops250717" onClick="recordOutboundLink(this, 'Outbound Links', 'NomNomcodrops250717');return false;">
+					<div class="pater__img pieces" style="background-image: url(pater/NomNom.png)" data-image-alt="pater/NomNom2.png"></div>
+					<h3 class="pater__title">Data-driven designers use <strong>NomNom</strong> to learn from customers faster</h3>
+					<p class="pater__description">The easiest way to search, organize and share all your customer feedback and user research in one place. <strong>NomNom is data-driven design made easy. &rarr;</strong></p>
+				</a>
+			</div>
+			<div class="content">
+				<div class="deco-letter">D</div>
+				<div class="deco-letter">G</div>
+				<div class="deco-letter">Q</div>
+				<div class="deco-letter">O</div>
+				<div class="deco-letter">C</div>
+				<div class="deco-letter">U</div>
+				<div class="gallery">
+					<div class="gallery__item pieces gallery__item--current" style="background-image: url(img/g1.jpg)"></div>
+					<div class="gallery__item pieces" style="background-image: url(img/g2.jpg)"></div>
+					<div class="gallery__item pieces" style="background-image: url(img/g3.jpg)"></div>
+					<div class="gallery__item pieces" style="background-image: url(img/g4.jpg)"></div>
+					<div class="gallery__item pieces" style="background-image: url(img/g5.jpg)"></div>
+				</div>
+				<nav class="gallery-nav">
+					<span class="gallery-nav__item gallery-nav__item--current"></span>
+					<span class="gallery-nav__item"></span>
+					<span class="gallery-nav__item"></span>
+					<span class="gallery-nav__item"></span>
+					<span class="gallery-nav__item"></span>
+				</nav>
+				<div class="switch">
+					<button class="switch__item switch__item--current">Effect 1</button>
+					<button class="switch__item">Effect 2</button>
+					<button class="switch__item">Effect 3</button>
+				</div>
+			</div>
+		</main>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/anime.min.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+		{
+			imagesLoaded(document.body, { background: true }, () => document.body.classList.remove('loading'));
+			
+			const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+			const galleryItems = Array.from(document.querySelectorAll('.gallery > .gallery__item'));
+			const navItems = Array.from(document.querySelectorAll('.gallery-nav > .gallery-nav__item'));
+			const piecesObjs = [];
+			let current = 0;
+			let isAnimating = false;
+			let animateInTimeout;
+			let fx = 0;
+
+			galleryItems.forEach((item) => {
+				piecesObjs.push(new Pieces(item, {
+					pieces: {rows: 6, columns: 3},
+					delay: [0,175]
+				}));
+			});
+
+			navItems.forEach((navitem, pos) => {
+				navitem.addEventListener('click', (ev) => navigate(ev, pos));
+			});
+
+			const navigate = (ev, pos) => {
+				ev.preventDefault();
+				if ( isAnimating || current === pos ) {
+					return false;
+				}
+				isAnimating = true;
+				
+				navItems[current].classList.remove('gallery-nav__item--current');
+				navItems[pos].classList.add('gallery-nav__item--current');
+
+				piecesObjs[current].animate({
+					duration: 800,
+					easing: [0.2,1,0.3,1],
+					delay: (t,i,l) => {
+						if ( fx === 0 ) {
+							return (l-i-1) + parseInt(t.dataset.delay);
+						}
+						else if ( fx === 1 ) {
+							return parseInt(t.dataset.column) + parseInt(t.dataset.delay);
+						}
+						else {
+							return (l-i-1)*20+getRandomInt(-30,30);
+						}
+					},
+					translateX: (t,i) => {
+						if ( fx === 0 ) {
+							return t.dataset.column < piecesObjs[current].getTotalColumns()/2 ? anime.random(50,100)+'px' : anime.random(-100,-50)+'px';
+						}
+						else if ( fx === 1 ) {
+							return pos > current ? anime.random(-1500,-1000)+'px' : anime.random(1000,1500)+'px';
+						}
+						else {
+							return anime.random(-10,10)+'px';
+						}
+					},
+					translateY: (t,i) => { 
+						if ( fx === 0 ) {
+							return anime.random(-1000,-800)+'px';
+						}
+						else if ( fx === 1 ) {
+							return t.dataset.row < piecesObjs[current].getTotalRows()/2 ? anime.random(50,100)+'px' : anime.random(-100,-50)+'px';
+						}
+						else {
+							return anime.random(-1000,-800)+'px';
+						}
+					},
+					opacity: {
+						value: 0,
+						easing: 'linear'
+					},
+					complete: () => {
+						galleryItems[current].classList.remove('gallery__item--current');
+						current = pos;
+						isAnimating = false;
+					}
+				});
+				
+				piecesObjs[pos].pieces.forEach((piece) => {
+					piece.style.opacity = 0;
+
+					if ( fx === 0 ) {
+						piece.style.transform = `translateX(${piece.dataset.column > piecesObjs[pos].getTotalColumns()/2 ? anime.random(50,100) : anime.random(-100,-50)}px) translateY(${anime.random(800,1000)}px)`;
+					}
+					else if ( fx === 1 ) {
+						piece.style.transform = `translateX(${pos > current ? anime.random(1000,1500) : anime.random(-1500,-1000)}px) translateY(${piece.dataset.row < piecesObjs[pos].getTotalRows()/2 ? anime.random(50,100) : anime.random(-100,-50)}px)`;
+					}
+					else {
+						piece.style.transform = `translateX(${anime.random(-50,50)}px) translateY(${anime.random(-200,-100)}px)`;
+					}
+				});
+
+				galleryItems[pos].style.opacity = 1;
+				piecesObjs[pos].animate({
+					duration: 800,
+					easing: fx === 2 ? 'easeOutQuint' : 'easeInOutQuint',
+					delay: (t,i,l) => {
+						if ( fx === 0 ) {
+							return i + parseInt(t.dataset.delay);
+						}
+						else if ( fx === 1 ) {
+							return parseInt(t.dataset.column) + parseInt(t.dataset.delay);	
+						}
+						else {
+							return (l-i-1)*40 + 150;
+						}
+					},
+					translateX: 0,
+					translateY: 0,
+					rotateZ: () => {
+						if ( fx === 0 ) {
+							return [anime.random(-45,45),0];	
+						}
+						return 0;
+					},
+					opacity: 1,
+					complete: () => {
+						galleryItems[pos].classList.add('gallery__item--current');
+					}
+				});
+			};
+
+			const fxItems = Array.from(document.querySelectorAll('.switch > .switch__item'));
+			fxItems.forEach((fxitem, pos) => {
+				fxitem.addEventListener('click', (ev) => {
+					if (fx === pos) return;
+					fxItems[fx].classList.remove('switch__item--current');
+					fx = pos;
+					fxItems[fx].classList.add('switch__item--current');
+				});
+			});
+		}
+		</script>
+		<script src="pater/pater.js"></script>
+	</body>
+</html>

@@ -1,0 +1,86 @@
+.demo-grid {
+	--body-text: #585858;
+	--body-text-alt: #cf1d56;
+	--body-bg: #010101;
+	--link-text: #c7c5c5;
+	--link-text-hover: #fff;
+	--content-font: "Cormorant Garamond", sans-serif;
+}
+
+.content {
+	--pieces-height: 90vh;
+	height: 100vh;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.page-nav {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	font-family: var(--content-font);
+}
+
+.page-nav__item {
+	font-size: 10vh;
+}
+
+.page-nav__item--close {
+	font-size: 1.85em;
+	margin: 1em 0 0 0;
+	color: var(--body-text-alt);
+	position: relative;
+}
+
+.page-nav__item--close:hover,
+.page-nav__item--close:focus {
+	color: var(--body-text-alt);
+	text-decoration: line-through;
+}
+
+.content__title {
+	font-size: 10vw;
+	margin: 0;
+	font-weight: normal;
+	cursor: pointer;
+	font-family: var(--content-font);
+	color: var(--body-text-alt);
+	position: relative;
+}
+
+.page-nav--open ~ .content__title {
+	pointer-events: none;
+}
+
+.content .pieces {
+	height: var(--pieces-height);
+	width: calc(var(--pieces-height) * calc(888/1000));
+	position: absolute;
+	left: 50%;
+	margin-left: calc(-1 * var(--pieces-height) * calc(888/1000) / 2);
+	pointer-events: none;
+}
+
+@media screen and (max-width: 40em) {
+	.content {
+		--pieces-height: 50vh;
+		height: var(--pieces-height);
+		margin-bottom: 8em;
+	}
+	.content__title {
+		font-size: 22vw;
+	}
+	.page-nav__item {
+		font-size: 6vh;
+	}
+}

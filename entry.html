@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Animated Image Pieces | Demo: Entry | Codrops</title>
+		<meta name="description" content="An animated pieces effect for images with many possibilities" />
+		<meta name="keywords" content="animation, piece, fragment, box, css, javascript, demo, effect, web dev" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="css/demo-entry.css" />
+		<link rel="stylesheet" type="text/css" href="pater/pater.css" />
+		<script>document.documentElement.className = 'js';</script>
+	</head>
+	<body class="demo-grid loading">
+		<svg class="hidden">
+			<symbol id="icon-arrow" viewBox="0 0 24 24">
+				<title>arrow</title>
+				<polygon points="6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 "/>
+			</symbol>
+			<symbol id="icon-drop" viewBox="0 0 24 24">
+				<title>drop</title>
+				<path d="M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z"/><path d="M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z"/>
+			</symbol>
+		</svg>
+		<main>
+			<div class="message">Please view this demo on a desktop.</div>
+			<div class="frame">
+				<header class="codrops-header">
+					<div class="codrops-links">
+						<a class="codrops-icon codrops-icon--prev" href="https://tympanus.net/Development/GridLayoutSlideshow/" title="Previous Demo"><svg class="icon icon--arrow"><use xlink:href="#icon-arrow"></use></svg></a>
+						<a class="codrops-icon codrops-icon--drop" href="https://tympanus.net/codrops/?p=31849" title="Back to the article"><svg class="icon icon--drop"><use xlink:href="#icon-drop"></use></svg></a>
+					</div>
+					<h1 class="codrops-header__title">Image Pieces Effect</h1>
+				</header>
+				<nav class="demos">
+					<a class="demo" href="index.html">Demo 1</a>
+					<a class="demo" href="gallery.html">Demo 2</a>
+					<a class="demo demo--current" href="entry.html">Demo 3</a>
+					<a class="demo" href="grid.html">Demo 4</a>
+				</nav>
+				<h3 class="frame__title">Баядерка &mdash; La Bayadère</h3>
+				<a class="pater" href="http://go.hackingui.com/NomNomcodrops250717" onClick="recordOutboundLink(this, 'Outbound Links', 'NomNomcodrops250717');return false;">
+					<div class="pater__img pieces" style="background-image: url(pater/NomNom.png)" data-image-alt="pater/NomNom2.png"></div>
+					<h3 class="pater__title">Data-driven designers use <strong>NomNom</strong> to learn from customers faster</h3>
+					<p class="pater__description">The easiest way to search, organize and share all your customer feedback and user research in one place. <strong>NomNom is data-driven design made easy. &rarr;</strong></p>
+				</a>
+			</div>
+			<div class="content">
+				<nav class="page-nav">
+					<a class="page-nav__item" href="#">The Story</a>
+					<a class="page-nav__item" href="#">Locations</a>
+					<a class="page-nav__item" href="#">Press</a>
+					<a class="page-nav__item" href="#">Tickets</a>
+					<a class="page-nav__item" href="#">Contact</a>
+					<a class="page-nav__item page-nav__item--close" href="#">Back</a>
+				</nav>
+				<div class="pieces" style="background-image: url(img/e.jpg)"></div>
+				<h2 class="content__title">Explore</h2>
+			</div>
+		</main>
+		<script src="js/imagesloaded.pkgd.min.js"></script>
+		<script src="js/anime.min.js"></script>
+		<script src="js/main.js"></script>
+		<script>
+		{
+			imagesLoaded(document.body, { background: true }, () => document.body.classList.remove('loading'));
+
+			const piecesEl = document.querySelector('.content .pieces');
+			const piecesObj = new Pieces(piecesEl, {
+				 pieces: {rows: 14, columns: 12}
+			});
+			const menuEl = document.querySelector('.page-nav');
+			const optionsCtrl = document.querySelector('.content__title');
+			const closeOptionsCtrl = menuEl.querySelector('a.page-nav__item--close');
+
+			const showOptions = () => {
+				menuEl.classList.add('page-nav--open');
+
+				piecesObj.animate({
+					duration: 3000,
+					delay: (t,i) => {
+						const elBounds = piecesEl.getBoundingClientRect();
+						const x1 = elBounds.left + elBounds.width/2;
+						const y1 = elBounds.top + elBounds.height/2;
+						const tBounds = t.getBoundingClientRect();
+						const x2 = tBounds.left + tBounds.width/2;
+						const y2 = tBounds.top + tBounds.height/2;
+						const dist = Math.sqrt(Math.pow(x2-x1,2) + Math.pow(y2-y1,2));
+						const maxDist = Math.sqrt(Math.pow(elBounds.left-x1,2) + Math.pow(elBounds.top-y1,2));
+						const maxDelay = 300;
+
+						t.dataset.centerx = x2;
+						t.dataset.centery = y2;
+
+						return -1*maxDelay/maxDist*dist + maxDelay;
+					},
+					easing: [0.1,1,0,1],
+					translateX: (t,i) => { 
+						return t.dataset.column < piecesObj.getTotalColumns()/2 ? anime.random(-400,0) : anime.random(0,400);
+					},
+					translateY: (t,i) => { 
+						return t.dataset.row < piecesObj.getTotalRows()/2 ? anime.random(-400,0) : anime.random(0,400);
+					},
+					opacity: 0.2
+				});
+				
+				anime.remove(optionsCtrl);
+				anime({
+					targets: optionsCtrl,
+					duration: 700,
+					easing: 'easeOutExpo',
+					scale: 1.2,
+					opacity: 0
+				});
+
+				anime.remove(menuEl);
+				anime({
+					targets: menuEl,
+					duration: 700,
+					delay: 150,
+					easing: 'easeOutExpo',
+					scale: [0,1],
+					opacity: 1
+				});
+			};
+
+			const hideOptions = (ev) => {
+				ev.preventDefault();
+				menuEl.classList.remove('page-nav--open');
+
+				piecesObj.animate({
+					duration: 600,
+					delay: (t,i) => {
+						const elBounds = piecesEl.getBoundingClientRect();
+						const x1 = elBounds.left + elBounds.width/2;
+						const y1 = elBounds.top + elBounds.height/2;
+						const x2 = t.dataset.centerx;
+						const y2 = t.dataset.centery;
+						const dist = Math.sqrt(Math.pow(x2-x1,2) + Math.pow(y2-y1,2));
+						const maxDist = Math.sqrt(Math.pow(elBounds.left-x1,2) + Math.pow(elBounds.top-y1,2));
+						const maxDelay = 800;
+
+						return maxDelay/maxDist*dist;
+					},
+					easing: [0.1,1,0,1],
+					translateX: 0,
+					translateY: 0,
+					opacity: 1
+				});
+				
+				anime.remove(optionsCtrl);
+				anime({
+					targets: optionsCtrl,
+					duration: 700,
+					delay: 200,
+					easing: 'easeOutQuint',
+					scale: [1.1,1],
+					opacity: 1
+				});
+
+				anime.remove(menuEl);
+				anime({
+					targets: menuEl,
+					duration: 700,
+					easing: 'easeOutQuint',
+					scale: 0.8,
+					opacity: 0
+				});
+			};
+
+			optionsCtrl.addEventListener('click', showOptions);
+			closeOptionsCtrl.addEventListener('click', hideOptions);
+		}
+		</script>
+		<script src="pater/pater.js"></script>
+	</body>
+</html>

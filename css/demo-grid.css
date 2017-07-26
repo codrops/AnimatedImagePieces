@@ -1,0 +1,144 @@
+.demo-grid {
+	--body-text: #8c8c8c;
+	--body-text-alt: #5c5c5c;
+	--body-bg: #3d3d3d;
+	--link-text: #6d6d6d;
+	--link-text-hover: #fff;
+	--content-title-text: #000;
+	--content-font: "Archivo Black", sans-serif;
+}
+
+/* Content */
+.content {
+	position: relative;
+	padding: 2em;
+	font-family: var(--content-font);
+	--pieces-width: 25vw;
+}
+
+.content__header {
+	display: flex;
+}
+
+.content__title {
+	font-size: 7em;
+	line-height: 0.8;
+	margin: 0;
+	font-weight: normal;
+	position: relative;
+	color: var(--content-title-text);
+}
+
+.content__subtitle {
+	font-size: 1.25em;
+	margin: 0;
+	padding: 0.25em 1em;
+	font-weight: normal;
+	color: var(--highlight-text);
+}
+
+.line::after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 20px;
+	background: currentColor;
+	top: calc(100% + 20px);
+	left: 0;
+}
+
+.grid {
+	display: grid;
+	align-items: center;
+	grid-template-columns: repeat(2, 1fr);
+	grid-column-gap: 5vw;
+}
+
+.grid__item {
+	padding: 8vh 8vw 20vh;
+	position: relative;
+	display: grid;
+	grid-template-columns: auto auto;
+	grid-row: span 2;
+	grid-column: 1;
+}
+
+.grid__item:nth-child(odd) {
+	grid-column: 2;
+}
+
+.grid__item-deco {
+	color: var(--highlight-text);
+	font-size: 10vw;
+	position: relative;
+	line-height: 0.8;
+	align-self: end;
+	justify-self: end;
+	grid-area: 1 / 1 / 3 / 3;
+} 
+
+.grid__item-title {
+	font-weight: normal;
+	position: relative;
+	text-transform: uppercase;
+	font-size: 1.5vw;
+	padding: 2.5vw 0 0;
+	letter-spacing: 0.05em;
+	white-space: nowrap;
+	margin: 0;
+	-webkit-writing-mode: vertical-rl;
+	writing-mode: vertical-rl;
+	color: var(--body-text-alt);
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.grid .pieces:hover ~ .grid__item-title {
+	color: var(--link-text-hover);
+}	
+
+.grid .pieces {
+	grid-area: 1 / 1 / 3 / 2;
+	width: var(--pieces-width);
+	height: calc(var(--pieces-width) * 1.3157);
+	position: relative;
+	justify-self: end;
+}
+
+.grid .piece {
+	pointer-events: none;
+	filter: grayscale(1);
+}
+
+@media screen and (min-width: 60em) {
+	.demo-grid .pater {
+		bottom: auto;
+		top: 12em;
+		position: absolute;
+	}
+}
+
+@media screen and (max-width: 60em) {
+	.content__header {
+		display: block;
+	}
+	.content__title {
+		margin-bottom: 0.75em;
+		font-size: 5em;
+	}
+	.content__subtitle {
+		padding: 0;
+	}
+	.grid {
+		grid-template-columns: auto;
+		--pieces-width: 60vw;
+	}
+	.grid__item:nth-child(odd) {
+		grid-column: 1;
+	}
+	.grid__item-title {
+		font-size: 1.5em;
+	}
+	.grid__item-deco {
+		font-size: 7em;
+	}
+}
